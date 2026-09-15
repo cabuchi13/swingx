@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validación de la estrategia · swingx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#0E151C;--surface:#16202A;--surface-2:#1B2731;
+  --ink:#DCE6EE;--muted:#8B9BAA;--line:#25323F;
+  --accent:#6BAAE0;--pos:#4CBE8C;--neg:#E87B68;--warn:#D9A54A;
+  --neg-soft:#2B1E1C;--warn-soft:#2A2318;--pos-soft:#152A22;
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root{--ground:#EDF1F4;--surface:#FFFFFF;--surface-2:#F5F8FA;
+    --ink:#16202B;--muted:#5B6B7B;--line:#D3DCE3;
+    --accent:#1F5C8B;--pos:#14704C;--neg:#A8352A;--warn:#8E5F12;
+    --neg-soft:#F6E5E2;--warn-soft:#F7EEDC;--pos-soft:#E1F0E8;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-inline:18px;padding-block:0 60px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+header{padding-block:30px 20px;border-bottom:2px solid var(--ink);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:clamp(22px,4.5vw,30px);
+  letter-spacing:-.02em;margin:0;line-height:1}
+.brand span{color:var(--accent)}
+.brand small{display:block;font-family:var(--body);font-weight:400;font-size:14px;
+  color:var(--muted);letter-spacing:0;margin-top:5px}
+nav a{font-family:var(--mono);font-size:12px;color:var(--accent);text-decoration:none;
+  border:1px solid var(--line);padding:6px 11px;border-radius:3px}
+nav a:hover{border-color:var(--accent)}
+
+.verdict{border-radius:4px;padding:20px 22px;margin-top:24px;border-left:4px solid}
+.verdict .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;margin-bottom:8px}
+.verdict .txt{font-size:16.5px;line-height:1.55;margin:0}
+.v-rentable{background:var(--pos-soft);border-color:var(--pos)} .v-rentable .tag{color:var(--pos)}
+.v-marginal,.v-insuficiente{background:var(--warn-soft);border-color:var(--warn)}
+.v-marginal .tag,.v-insuficiente .tag{color:var(--warn)}
+.v-no_rentable,.v-sobreajuste{background:var(--neg-soft);border-color:var(--neg)}
+.v-no_rentable .tag,.v-sobreajuste .tag{color:var(--neg)}
+
+h2{font-family:var(--display);font-size:18px;font-weight:700;margin:36px 0 4px}
+.sub{color:var(--muted);font-size:14.5px;margin:0 0 14px;max-width:66ch}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:440px}
+th,td{padding:9px 14px;text-align:right;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;background:var(--surface-2)}
+tr:last-child td{border-bottom:none}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.good{color:var(--pos)} .bad{color:var(--neg)} .dim{color:var(--muted)}
+tr.sep td{background:var(--surface-2);font-family:var(--mono);font-size:10px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 14px}
+.empty{background:var(--surface);border:1px solid var(--line);border-radius:4px;
+  padding:34px 24px;text-align:center;margin-top:24px}
+.empty .big{font-family:var(--display);font-size:19px;font-weight:700;margin-bottom:8px}
+.empty p{color:var(--muted);margin:0 auto 14px;max-width:48ch;font-size:15px}
+.empty ol{text-align:left;max-width:380px;margin:0 auto;font-size:14.5px;color:var(--muted)}
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted);max-width:70ch}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1 class="brand">swing<span>x</span><small>Validación de la estrategia</small></h1>
+  <nav><a href="./">← Señales</a></nav>
+</header>
+
+<div id="main"><p class="sub" style="margin-top:24px">cargando…</p></div>
+
+<footer id="foot"></footer>
+
+</div>
+<script>
+(function(){
+  var main=document.getElementById('main'),foot=document.getElementById('foot');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function num(v,d){return (v===null||v===undefined||isNaN(v))?'—':Number(v).toFixed(d);}
+  function cls(v){return v>0?'good':(v<0?'bad':'dim');}
+
+  function cmp(label,a,b,key,d,better){
+    var va=a&&a[key],vb=b&&b[key];
+    var c=better?cls(vb):'';
+    return '<tr><td>'+label+'</td><td class="n">'+num(va,d)+
+      '</td><td class="n '+c+'">'+num(vb,d)+'</td></tr>';
+  }
+
+  function render(d){
+    var w=d.walk_forward||{};
+    var v=w.veredicto||{estado:'insuficiente',texto:'Sin veredicto.'};
+    var h='';
+
+    h+='<div class="verdict v-'+esc(v.estado)+'"><div class="tag">Veredicto · '+esc(v.estado).replace('_',' ')+
+       '</div><p class="txt">'+esc(v.texto)+'</p></div>';
+
+    if(w.error){
+      h+='<h2>No se pudo validar</h2><p class="sub">'+esc(w.error)+'</p>';
+      main.innerHTML=h;return;
+    }
+
+    h+='<h2>Dentro vs. fuera de muestra</h2>';
+    h+='<p class="sub">La columna <b>TEST</b> es la única que importa: son años que el sistema '+
+       'nunca vio mientras se elegían los parámetros. Si TRAIN es mucho mejor que TEST, '+
+       'lo que encontramos fue ruido. Corte: '+esc(w.cut||'—')+'.</p>';
+    h+='<div class="tbl"><table><thead><tr><th>Métrica</th><th>Train</th><th>Test (ciego)</th></tr></thead><tbody>';
+    h+='<tr class="sep"><td colspan="3">Parámetros por defecto</td></tr>';
+    h+=cmp('Operaciones',w.train_base,w.test_base,'trades',0);
+    h+=cmp('Esperanza por trade (R)',w.train_base,w.test_base,'avg_r',3,true);
+    h+=cmp('Win rate %',w.train_base,w.test_base,'win_rate_%',1);
+    h+=cmp('Profit factor',w.train_base,w.test_base,'profit_factor',2);
+    h+=cmp('Máximo drawdown %',w.train_base,w.test_base,'max_dd_%',1);
+    h+='<tr class="sep"><td colspan="3">Mejor configuración hallada en train</td></tr>';
+    h+=cmp('Operaciones',w.train_mejor,w.test_mejor,'trades',0);
+    h+=cmp('Esperanza por trade (R)',w.train_mejor,w.test_mejor,'avg_r',3,true);
+    h+=cmp('Win rate %',w.train_mejor,w.test_mejor,'win_rate_%',1);
+    h+=cmp('Profit factor',w.train_mejor,w.test_mejor,'profit_factor',2);
+    h+=cmp('Máximo drawdown %',w.train_mejor,w.test_mejor,'max_dd_%',1);
+    h+='</tbody></table></div>';
+
+    if(w.mejor_config){
+      h+='<p class="sub" style="margin-top:12px">Configuración elegida: <span class="mono">'+
+         esc(JSON.stringify(w.mejor_config))+'</span>'+
+         (w.degradacion_pct!=null?' · degradación train→test <span class="mono '+cls(w.degradacion_pct)+'">'+
+          (w.degradacion_pct>0?'+':'')+w.degradacion_pct+'%</span>':'')+'</p>';
+    }
+
+    var b=d.por_tramo_de_score||[];
+    if(b.length){
+      h+='<h2>¿El score sirve para algo?</h2>';
+      h+='<p class="sub">Si el puntaje mide calidad de verdad, la esperanza debería subir '+
+         'con el tramo. Si es plano, el score es decorativo y conviene ignorarlo.</p>';
+      h+='<div class="tbl"><table><thead><tr><th>Tramo</th><th>Trades</th><th>Win %</th><th>Esperanza (R)</th></tr></thead><tbody>';
+      b.forEach(function(x){
+        h+='<tr><td class="mono">'+esc(x.tramo)+'</td><td class="n">'+x.trades+
+           '</td><td class="n">'+num(x.win_rate,1)+'</td><td class="n '+cls(x.avg_r)+'">'+num(x.avg_r,3)+'</td></tr>';
+      });
+      h+='</tbody></table></div>';
+    }
+
+    var m=d.por_motivo_de_salida||{};
+    var keys=Object.keys(m);
+    if(keys.length){
+      h+='<h2>Cómo terminan las operaciones</h2>';
+      h+='<p class="sub">Los cierres por <span class="mono">gap</span> son los que el stop no pudo evitar. '+
+         'Si pesan mucho, el riesgo real es mayor que el planificado.</p>';
+      h+='<div class="tbl"><table><thead><tr><th>Motivo</th><th>Cantidad</th><th>Esperanza (R)</th></tr></thead><tbody>';
+      keys.sort(function(a,b2){return m[b2].n-m[a].n;}).forEach(function(k){
+        h+='<tr><td class="mono">'+esc(k)+'</td><td class="n">'+m[k].n+
+           '</td><td class="n '+cls(m[k].avg_r)+'">'+num(m[k].avg_r,3)+'</td></tr>';
+      });
+      h+='</tbody></table></div>';
+    }
+
+    var pe=d.peores||[],me=d.mejores||[];
+    if(pe.length||me.length){
+      h+='<h2>Extremos</h2><p class="sub">Las cinco peores y las cinco mejores. '+
+         'Si el resultado depende de dos operaciones, no hay sistema.</p>';
+      h+='<div class="tbl"><table><thead><tr><th>Ticker</th><th>Entrada</th><th>R</th><th>Bruto %</th><th>Motivo</th></tr></thead><tbody>';
+      me.concat(pe).forEach(function(t){
+        h+='<tr><td>'+esc(t.ticker)+'</td><td class="n dim">'+esc(t.entry_date)+
+           '</td><td class="n '+cls(t.r)+'">'+num(t.r,2)+'</td><td class="n">'+num(t.gross_pct,1)+
+           '</td><td class="mono dim">'+esc(t.reason)+'</td></tr>';
+      });
+      h+='</tbody></table></div>';
+    }
+
+    main.innerHTML=h;
+    foot.innerHTML='Histórico analizado: '+esc(d.period||'?')+' · '+(d.tickers||'?')+
+      ' tickers · generado el '+new Date(d.generated_at).toLocaleString('es-AR')+
+      '. El backtest tiene sesgo de supervivencia (el universo son empresas que hoy siguen listadas) '+
+      'y no incluye slippage real, así que los resultados en vivo van a ser peores que estos.';
+  }
+
+  fetch('backtest/latest.json?t='+Date.now())
+    .then(function(r){if(!r.ok)throw 0;return r.json();})
+    .then(render)
+    .catch(function(){
+      main.innerHTML='<div class="empty"><div class="big">Todavía no se validó la estrategia</div>'+
+        '<p>Corré la validación una vez y los resultados aparecen acá.</p><ol>'+
+        '<li>Pestaña <b>Actions</b> del repo</li>'+
+        '<li>Workflow <b>Validar estrategia</b></li>'+
+        '<li><b>Run workflow</b> → elegí el período → Run</li>'+
+        '<li>Cuando termine, recargá esta página</li></ol></div>';
+    });
+})();
+</script>
+</body>
+</html>

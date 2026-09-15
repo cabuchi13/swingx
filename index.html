@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Señales Swing · swingx</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<style>
+:root{
+  --ground:#0E151C; --surface:#16202A; --surface-2:#1B2731;
+  --ink:#DCE6EE; --muted:#8B9BAA; --line:#25323F; --line-strong:#33434F;
+  --accent:#6BAAE0; --accent-soft:#1B2A38;
+  --pos:#4CBE8C; --neg:#E87B68; --warn:#D9A54A;
+  --neg-soft:#2B1E1C; --warn-soft:#2A2318; --pos-soft:#152A22;
+  --display:'Archivo','Helvetica Neue',Arial,sans-serif;
+  --body:'Source Serif 4',Georgia,serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --ground:#EDF1F4; --surface:#FFFFFF; --surface-2:#F5F8FA;
+    --ink:#16202B; --muted:#5B6B7B; --line:#D3DCE3; --line-strong:#B6C4CF;
+    --accent:#1F5C8B; --accent-soft:#E2ECF4;
+    --pos:#14704C; --neg:#A8352A; --warn:#8E5F12;
+    --neg-soft:#F6E5E2; --warn-soft:#F7EEDC; --pos-soft:#E1F0E8;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding-inline:18px;padding-block:0 60px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+header{padding-block:30px 20px;border-bottom:2px solid var(--ink);
+  display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:800;font-size:clamp(24px,5vw,34px);
+  letter-spacing:-.02em;line-height:1;margin:0}
+.brand span{color:var(--accent)}
+.stamp{font-family:var(--mono);font-size:11.5px;color:var(--muted);text-align:right;line-height:1.7}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+.dot.ok{background:var(--pos)} .dot.stale{background:var(--warn)} .dot.err{background:var(--neg)}
+
+.bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  border:1px solid var(--line);border-radius:3px;background:var(--surface);margin-top:22px;overflow:hidden}
+.bar div{padding:13px 16px;border-right:1px solid var(--line)}
+.bar div:last-child{border-right:none}
+.bar .k{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:5px}
+.bar .v{font-family:var(--display);font-weight:700;font-size:17px}
+@media(max-width:560px){.bar div{border-right:none;border-bottom:1px solid var(--line)}
+  .bar div:last-child{border-bottom:none}}
+
+h2{font-family:var(--display);font-size:19px;font-weight:700;margin:38px 0 4px}
+.sub{color:var(--muted);font-size:14.5px;margin:0 0 16px}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;
+  margin-bottom:16px;overflow:hidden}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:15px 18px;background:var(--surface-2);border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tk{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.01em}
+.sector{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-left:9px}
+.score{display:flex;align-items:center;gap:9px}
+.score-n{font-family:var(--mono);font-weight:600;font-size:15px}
+.score-bar{width:64px;height:5px;background:var(--line);border-radius:3px;overflow:hidden}
+.score-bar i{display:block;height:100%;background:var(--accent)}
+
+.entry{padding:15px 18px;border-bottom:1px solid var(--line);
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.entry .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.entry .px{font-family:var(--mono);font-weight:600;font-size:26px;color:var(--accent)}
+
+.body{padding:16px 18px;display:grid;grid-template-columns:1fr 190px;gap:20px}
+@media(max-width:620px){.body{grid-template-columns:1fr}}
+.rows{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-content:start}
+.r{padding:7px 0;border-bottom:1px solid var(--line)}
+.r .k{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2px}
+.r .v{font-family:var(--mono);font-size:15px;font-weight:600}
+.r .v small{font-weight:400;font-size:11.5px;color:var(--muted)}
+.r.wide{grid-column:1/-1}
+svg.ladder{width:100%;height:auto;display:block}
+.ladder-cap{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px}
+
+.note{display:flex;gap:9px;padding:9px 13px;border-left:3px solid;font-size:13.5px;
+  line-height:1.5;margin:0 18px 12px}
+.note .t{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;padding-top:2px;white-space:nowrap}
+.note.warn{background:var(--warn-soft);border-color:var(--warn)} .note.warn .t{color:var(--warn)}
+.note.bad{background:var(--neg-soft);border-color:var(--neg)} .note.bad .t{color:var(--neg)}
+
+.empty{background:var(--surface);border:1px solid var(--line);border-radius:4px;
+  padding:34px 24px;text-align:center}
+.empty .big{font-family:var(--display);font-size:19px;font-weight:700;margin-bottom:8px}
+.empty p{color:var(--muted);margin:0 auto;max-width:46ch;font-size:15px}
+
+.blocked{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:5px 18px}
+.blocked div{padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.blocked div:last-child{border-bottom:none}
+.blocked b{font-family:var(--display)}
+
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--muted)}
+footer a{color:var(--accent)}
+.steps{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:16px 20px;margin-top:14px}
+.steps ol{margin:0;padding-left:20px;font-size:14.5px}
+.steps li{margin-bottom:7px}
+.steps li:last-child{margin-bottom:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1 class="brand">swing<span>x</span></h1>
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="backtest.html" style="font-family:var(--mono);font-size:12px;color:var(--accent);
+      text-decoration:none;border:1px solid var(--line);padding:6px 11px;border-radius:3px">Validación →</a>
+    <div class="stamp" id="stamp">cargando…</div>
+  </div>
+</header>
+
+<div class="bar" id="bar"></div>
+
+<div id="main"></div>
+
+<footer>
+  Señales generadas automáticamente al cierre de Nueva York. No son recomendaciones de inversión —
+  el punto de partida del análisis, no el final.
+  <a href="https://github.com/cabuchi13/swingx" target="_blank" rel="noopener">Código y reglas en GitHub</a>.
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var stamp=document.getElementById('stamp'),bar=document.getElementById('bar'),main=document.getElementById('main');
+
+  function money(n){return '$'+Number(n).toLocaleString('en-US',{maximumFractionDigits:Math.abs(n)<100?2:0});}
+  function px(n){return Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function ladder(p){
+    var W=190,H=250,padT=14,padB=14;
+    var hi=p.target1,lo=p.liq_price,span=hi-lo;
+    if(!(span>0))return '';
+    hi+=span*0.07;lo-=span*0.07;span=hi-lo;
+    var y=function(v){return padT+(hi-v)/span*(H-padT-padB);};
+    var x0=3,x1=74,s='';
+    s+='<rect x="'+x0+'" y="'+y(p.target1)+'" width="'+(x1-x0)+'" height="'+Math.max(0,y(p.entry)-y(p.target1))+'" fill="'+'var(--pos)'+'" opacity="0.13"></rect>';
+    s+='<rect x="'+x0+'" y="'+y(p.entry)+'" width="'+(x1-x0)+'" height="'+Math.max(0,y(p.stop)-y(p.entry))+'" fill="var(--neg)" opacity="0.11"></rect>';
+    s+='<rect x="'+x0+'" y="'+y(p.stop)+'" width="'+(x1-x0)+'" height="'+Math.max(0,y(p.liq_price)-y(p.stop))+'" fill="var(--neg)" opacity="0.28"></rect>';
+    var marks=[
+      {v:p.target1,c:'var(--pos)',l:'Objetivo',s2:'+'+((p.target1-p.entry)/p.entry*100).toFixed(1)+'%',w:2},
+      {v:p.entry,c:'var(--ink)',l:'Entrada',s2:'',w:2.5},
+      {v:p.stop,c:'var(--neg)',l:'Stop',s2:'−'+(p.stop_dist_pct*100).toFixed(1)+'%',w:2},
+      {v:p.liq_price,c:'var(--neg)',l:'Liquidación',s2:'−'+(p.liq_dist_pct*100).toFixed(1)+'%',w:2.5}
+    ];
+    marks.forEach(function(m){
+      var yy=y(m.v);
+      s+='<line x1="'+x0+'" y1="'+yy+'" x2="'+x1+'" y2="'+yy+'" stroke="'+m.c+'" stroke-width="'+m.w+'"></line>';
+      s+='<text x="'+(x1+6)+'" y="'+(yy-2)+'" fill="'+m.c+'" font-family="IBM Plex Mono,monospace" font-size="8.5" font-weight="600">'+m.l+'</text>';
+      s+='<text x="'+(x1+6)+'" y="'+(yy+8)+'" fill="var(--muted)" font-family="IBM Plex Mono,monospace" font-size="8">'+px(m.v)+(m.s2?' · '+m.s2:'')+'</text>';
+    });
+    if(y(p.liq_price)-y(p.stop)>20){
+      s+='<text x="'+((x0+x1)/2)+'" y="'+((y(p.stop)+y(p.liq_price))/2+3)+'" fill="var(--neg)" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="7.5" font-weight="600">ZONA DE GAP</text>';
+    }
+    return '<svg class="ladder" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Niveles de la operación">'+s+'</svg>';
+  }
+
+  function card(c){
+    var p=c.plan;if(!p)return '';
+    var t1pct=(p.target1-p.entry)/p.entry*100;
+    var h='<div class="card"><div class="card-top"><div><span class="tk">'+esc(c.ticker)+
+      '</span><span class="sector">'+esc(c.sector||'')+'</span></div>'+
+      '<div class="score"><span class="score-n">'+c.score+'</span>'+
+      '<span class="score-bar"><i style="width:'+Math.max(0,Math.min(100,c.score))+'%"></i></span></div></div>';
+    h+='<div class="entry"><span class="lbl">Entrar sólo si supera</span><span class="px">'+px(p.entry)+'</span></div>';
+    h+='<div class="body"><div class="rows">'+
+      row('Stop',px(p.stop),'−'+(p.stop_dist_pct*100).toFixed(1)+'%')+
+      row('Objetivo 1',px(p.target1),'+'+t1pct.toFixed(1)+'% · cerrar 50%')+
+      row('Nocional',money(p.notional),'')+
+      row('Margen',money(p.margin),p.leverage.toFixed(1)+'x')+
+      row('Unidades',p.qty.toFixed(3),'')+
+      row('Liquidación',px(p.liq_price),'−'+(p.liq_dist_pct*100).toFixed(1)+'%')+
+      row('Riesgo',money(p.risk_amount),(p.risk_pct_equity*100).toFixed(2)+'% del capital')+
+      row('Si gap −20%',money(p.gap_loss_20pct),'')+
+      row('RSI(2) · ATR',Math.round(c.rsi2)+' · '+(c.atr_pct*100).toFixed(1)+'%','')+
+      row('Pullback',(c.pullback_pct*100).toFixed(1)+'%','vs SMA50 '+(c.pct_vs_sma50*100>=0?'+':'')+(c.pct_vs_sma50*100).toFixed(1)+'%')+
+      rowWide('Limitante del tamaño',esc(p.binding_constraint),'costo ida y vuelta '+p.round_trip_cost_pct_margin.toFixed(1)+'% del margen')+
+      '</div><div><div class="ladder-cap">Niveles</div>'+ladder(p)+'</div></div>';
+    (p.warnings||[]).forEach(function(w){
+      h+='<div class="note warn"><span class="t">Atención</span><span>'+esc(w)+'</span></div>';
+    });
+    if(c.earnings_in_days!=null){
+      h+='<div class="note warn"><span class="t">Earnings</span><span>Reporta en '+c.earnings_in_days+' ruedas'+(c.earnings_date?' ('+esc(c.earnings_date)+')':'')+'</span></div>';
+    }
+    return h+'</div>';
+  }
+  function row(k,v,s){return '<div class="r"><div class="k">'+k+'</div><div class="v">'+v+(s?' <small>'+s+'</small>':'')+'</div></div>';}
+  function rowWide(k,v,s){return '<div class="r wide"><div class="k">'+k+'</div><div class="v">'+v+(s?' <small>'+s+'</small>':'')+'</div></div>';}
+
+  function render(d){
+    var live=d.candidates.filter(function(c){return !c.rejected;});
+    var blocked=d.candidates.filter(function(c){return c.rejected;});
+    var gen=new Date(d.generated_at);
+    var ageH=(Date.now()-gen.getTime())/36e5;
+    var cls=ageH<40?'ok':(ageH<96?'stale':'err');
+    var txt=ageH<40?'al día':(ageH<96?'sin actualizar':'desactualizado');
+    stamp.innerHTML='<span class="dot '+cls+'"></span>'+txt+'<br>cierre del '+esc(d.date)+
+      '<br>'+gen.toLocaleString('es-AR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+
+    bar.innerHTML=
+      '<div><div class="k">Candidatos</div><div class="v">'+live.length+'</div></div>'+
+      '<div><div class="k">Bloqueados</div><div class="v">'+blocked.length+'</div></div>'+
+      '<div><div class="k">Capital</div><div class="v">'+money(d.equity)+'</div></div>'+
+      '<div><div class="k">Margen total</div><div class="v">'+
+        money(live.reduce(function(a,c){return a+(c.plan?c.plan.margin:0);},0))+'</div></div>';
+
+    var h='';
+    if(live.length){
+      h+='<h2>Señales de hoy</h2><p class="sub">Cargá cada una como orden trigger mañana en la apertura. Fuera de horario BingX no acepta órdenes nuevas.</p>';
+      live.forEach(function(c){h+=card(c);});
+    }else{
+      h+='<h2>Señales de hoy</h2><div class="empty"><div class="big">Sin candidatos</div>'+
+        '<p>Ninguna acción cumple todas las condiciones. Es lo normal: el setup aparece pocas veces por mes. No hay nada que hacer hoy.</p></div>';
+    }
+    if(blocked.length){
+      h+='<h2>Bloqueados por earnings</h2><p class="sub">Técnicamente válidos, descartados porque el gap de un reporte no se puede stopear.</p><div class="blocked">';
+      blocked.forEach(function(c){
+        h+='<div><b>'+esc(c.ticker)+'</b> · score '+c.score+' — '+esc(c.rejected)+'</div>';
+      });
+      h+='</div>';
+    }
+    main.innerHTML=h;
+  }
+
+  function fail(msg,steps){
+    stamp.innerHTML='<span class="dot err"></span>sin datos';
+    bar.style.display='none';
+    var h='<h2>Todavía no hay señales</h2><div class="empty"><div class="big">'+esc(msg)+'</div>'+
+      '<p>El dashboard se llena solo con la primera corrida del screener.</p></div>';
+    if(steps)h+='<div class="steps"><ol>'+steps+'</ol></div>';
+    main.innerHTML=h;
+  }
+
+  fetch('signals/latest.json?t='+Date.now())
+    .then(function(r){if(!r.ok)throw new Error(r.status);return r.json();})
+    .then(render)
+    .catch(function(){
+      fail('El screener no corrió todavía',
+        '<li>Andá a la pestaña <b>Actions</b> del repo</li>'+
+        '<li>Elegí <b>Señales swing</b> → <b>Run workflow</b></li>'+
+        '<li>Cuando termine, recargá esta página</li>');
+    });
+})();
+</script>
+</body>
+</html>
