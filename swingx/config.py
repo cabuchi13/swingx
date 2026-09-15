@@ -112,10 +112,11 @@ class BingXCosts:
     OJO: funding y fees se cobran sobre el NOCIONAL, no sobre tu margen.
     Con 10x, un costo de 0.1% del nocional es 1% de tu margen.
     """
+    min_notional: float = 2.0            # verificado: Min. Trade Value = 2 USDT
     taker_fee: float = 0.0005
     maker_fee: float = 0.0002
     funding_rate: float = 0.0001
-    funding_intervals_per_day: int = 6
+    funding_intervals_per_day: int = 3   # verificado en la plataforma: intervalo de 8H
     max_leverage: float = 25.0
 
 
