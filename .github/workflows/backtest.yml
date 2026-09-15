@@ -1,0 +1,41 @@
+name: Validar estrategia
+on:
+  workflow_dispatch:
+    inputs:
+      period:
+        description: 'Histórico a analizar'
+        type: choice
+        options: ['5y', '8y', '10y', 'max']
+        default: '8y'
+      train_frac:
+        description: 'Fracción para entrenamiento'
+        type: string
+        default: '0.6'
+permissions:
+  contents: write
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Verificar la lógica
+        run: python tests/test_logic.py
+      - name: Correr la validación walk-forward
+        env:
+          SWINGX_PERIOD: ${{ inputs.period }}
+          SWINGX_TRAIN_FRAC: ${{ inputs.train_frac }}
+        run: python -m swingx.validate
+      - name: Publicar el resultado
+        if: always()
+        run: |
+          git config user.name  "swingx-bot"
+          git config user.email "swingx-bot@users.noreply.github.com"
+          git add backtest/
+          git diff --staged --quiet || (git commit -m "validacion" && git push)
