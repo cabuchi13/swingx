@@ -60,6 +60,15 @@ def main() -> int:
     print()
     print(exp_report(exp))
 
+    # 1c) HIPOTESIS 2: momentum, con universo partido y vara a 3 sigma.
+    print("\n" + "=" * 74)
+    print("  HIPOTESIS 2: MOMENTUM")
+    print("=" * 74)
+    from .experiment2 import run_momentum, format_report as mom_report
+    mom = run_momentum(data, spy, costs, repeats=4, verbose=True)
+    print()
+    print(mom_report(mom))
+
     # 1b) EL CONTROL: el setup contra comprar al azar. Esta es la pregunta real.
     print("\n" + "=" * 64)
     print("  CONTROL: ¿el setup le gana a comprar al azar?")
@@ -108,6 +117,7 @@ def main() -> int:
         "walk_forward": r,
         "control": cmp_,
         "experimento": exp,
+        "momentum": mom,
         "backtest_completo": full,
         "por_tramo_de_score": buckets,
         "por_motivo_de_salida": por_motivo,
@@ -131,6 +141,9 @@ def main() -> int:
             f.write(f"**Veredicto: {v.get('estado', '?').upper()}**\n\n")
             f.write(f"{v.get('texto', '')}\n\n")
             f.write("```\n" + format_report(r) + "\n```\n")
+            mv = mom.get("veredicto", {})
+            f.write(f"\n## Hipótesis 2: momentum\n\n**{mv.get('estado','?').upper()}** — "
+                    f"{mv.get('texto','')}\n\n```\n" + mom_report(mom) + "\n```\n")
             ev = exp.get("veredicto", {})
             f.write(f"\n## Experimento de hipótesis\n\n**{ev.get('estado','?').upper()}** — "
                     f"{ev.get('texto','')}\n\n```\n" + exp_report(exp) + "\n```\n")
