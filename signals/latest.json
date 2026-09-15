@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-09-15T13:38:24.733683+00:00",
+  "date": "2026-09-15",
+  "equity": 2000.0,
+  "candidates": [
+    {
+      "date": "2026-09-15",
+      "close": 262.260009765625,
+      "trigger": 266.24359130859375,
+      "stop": 258.0629401444948,
+      "atr": 5.453767442732642,
+      "atr_pct": 0.020795268968404803,
+      "rsi2": 8.223849175152253,
+      "rsi14": 44.493710558341924,
+      "pullback_pct": 0.05807557854941813,
+      "pct_vs_sma50": -0.0021792927411386303,
+      "pct_vs_sma200": 0.10334305372497359,
+      "dvol_musd": 1615.1225727016174,
+      "stop_dist_pct": 0.03072618996720577,
+      "score": 71.1,
+      "s_trend": 59.0,
+      "s_depth": 83.0,
+      "s_oversold": 45.0,
+      "s_support": 96.0,
+      "s_vol": 83.0,
+      "ticker": "JNJ",
+      "sector": "health",
+      "earnings_in_days": 20,
+      "earnings_date": "2026-10-13",
+      "rejected": null,
+      "plan": {
+        "entry": 266.24359130859375,
+        "stop": 258.0629401444948,
+        "target1": 278.5145680547422,
+        "stop_dist_pct": 0.03072618996720577,
+        "notional": 500.0,
+        "margin": 50.0,
+        "qty": 1.877979475646673,
+        "leverage": 10.0,
+        "leverage_requested": 10.0,
+        "liq_price": 240.95045013427736,
+        "liq_dist_pct": 0.09499999999999993,
+        "risk_amount": 15.363094983602887,
+        "risk_pct_equity": 0.007681547491801443,
+        "binding_constraint": "tope de gap overnight",
+        "gap_loss_20pct": 100.0,
+        "round_trip_cost_pct_margin": 4.6,
+        "warnings": [
+          "El tope de gap limita el tamano: el riesgo efectivo queda por debajo del 1.0% objetivo."
+        ]
+      }
+    }
+  ]
+}
