@@ -3,29 +3,79 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 # --- Universo -----------------------------------------------------------
-# Acciones con contrato en BingX (perpetuos sobre acciones / standard futures).
-# Verifica la lista en la plataforma antes de operar: BingX agrega y delista pares.
+# Extraido de la plataforma en vivo (bingx.com/en/market/stocks, filtro
+# "US Stocks", 4 paginas, 117 instrumentos) el 15/09/2026.
+#
+# Excluidos a proposito:
+#   - ETFs apalancados 3x (SOXL, SOXS, TQQQ, SQQQ): ya vienen apalancados;
+#     sumarles el nuestro multiplica el riesgo dos veces.
+#   - Sinteticos sin mercado publico (SPCX/SpaceX, PURRUS, BMNR): no hay
+#     historico real contra el cual validar nada.
+#   - Indices amplios (SPY, QQQ): son la referencia de regimen, no candidatos.
+#   - No estadounidenses (HYUNDAI, SAMSUNG, SKHYNIX): otro huso horario.
+#
+# Los nombres con poco historico (IPOs recientes) los descarta sola la capa
+# de datos, que exige mas de 260 ruedas.
 UNIVERSE = [
-    "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NVDA", "TSLA", "NFLX",
-    "AMD", "INTC", "TSM", "ARM", "MU", "AVGO",
-    "PYPL", "SOFI", "HOOD", "DKNG", "UBER", "ABNB", "SHOP", "COIN",
-    "V", "MA", "JNJ", "PFE", "WMT", "KO", "BRK-B", "UNH", "BAC", "XOM",
-    "PLTR", "NIO", "F", "CCL", "MSTR",
+    # Megacaps y software
+    "AAPL", "MSFT", "GOOGL", "AMZN", "META", "NFLX", "ORCL", "CRM", "NOW",
+    "IBM", "CSCO", "PANW", "APP", "SNOW", "PATH", "RDDT",
+    # Semis y hardware
+    "NVDA", "AMD", "INTC", "TSM", "ASML", "AVGO", "MU", "MRVL", "QCOM",
+    "AMAT", "LRCX", "TXN", "ARM", "SMCI", "DELL", "HPQ", "WDC", "STX",
+    "SNDK", "CRDO", "COHR", "LITE", "GLW", "AAOI", "KOPN", "NBIS", "CBRS",
+    # Fintech, cripto y bancos
+    "COIN", "HOOD", "SOFI", "MSTR", "MARA", "CRCL", "JPM", "GS", "MS", "BRK-B",
+    # Infraestructura de IA
+    "CRWV", "IREN", "APLD", "VRT",
+    # Salud y consumo
+    "JNJ", "LLY", "NVO", "COST", "MAR", "RACE", "AMC", "GME",
+    # Energia y materiales
+    "XOM", "OXY", "COP", "SLB", "LNG", "MP",
+    # Industria, espacio y defensa
+    "GE", "LMT", "RKLB", "ASTS", "RDW", "SIDU", "SPCE", "FLY",
+    # Autos y movilidad
+    "TSLA", "RIVN", "F", "OUST",
+    # Energia limpia y nuclear
+    "PLUG", "FLNC", "SMR",
+    # Cuantica e IA especulativa
+    "IONQ", "QBTS", "RGTI", "QUBT", "ARQQ", "BBAI", "INFQ", "LWLG",
+    # Telecom y otros
+    "NOK", "BB", "ONDS", "USAR", "BE",
+    # ETFs sectoriales sin apalancar — no tienen earnings
+    "XLE", "XOP", "IGV", "EWT",
 ]
 
-# Subconjunto defensivo: menor riesgo de gap, apto para apalancamiento mayor.
-LOW_VOL_TIER = {"V", "MA", "JNJ", "PFE", "WMT", "KO", "BRK-B", "UNH", "BAC", "XOM", "AAPL", "MSFT"}
-
-SECTOR = {
-    "AAPL": "tech", "MSFT": "tech", "GOOGL": "tech", "AMZN": "consumer", "META": "tech",
-    "NVDA": "semis", "TSLA": "consumer", "NFLX": "tech", "AMD": "semis", "INTC": "semis",
-    "TSM": "semis", "ARM": "semis", "MU": "semis", "AVGO": "semis", "PYPL": "fintech",
-    "SOFI": "fintech", "HOOD": "fintech", "DKNG": "consumer", "UBER": "consumer",
-    "ABNB": "consumer", "SHOP": "tech", "COIN": "fintech", "V": "fintech", "MA": "fintech",
-    "JNJ": "health", "PFE": "health", "WMT": "consumer", "KO": "consumer",
-    "BRK-B": "financials", "UNH": "health", "BAC": "financials", "XOM": "energy",
-    "PLTR": "tech", "NIO": "consumer", "F": "consumer", "CCL": "consumer", "MSTR": "fintech",
+# Traduccion ticker real -> simbolo en BingX, donde difieren.
+BINGX_SYMBOL = {
+    "AMD": "AMDUS", "SOFI": "SOFIUS", "OXY": "OXYUS", "COP": "COPUS",
+    "MP": "MPUS", "STX": "STXUS", "NOK": "NOKUS", "SNOW": "SNOWUS",
+    "LMT": "LMTUS", "AMC": "AMCUS", "F": "FUS", "BB": "BBUS",
+    "BRK-B": "BRKB", "FLY": "FLYUS",
 }
+
+# Subconjunto defensivo: menor riesgo de gap, tolera apalancamiento mayor.
+LOW_VOL_TIER = {"AAPL", "MSFT", "JNJ", "XOM", "BRK-B", "JPM", "CSCO",
+                "IBM", "TXN", "COST", "XLE"}
+
+_SEC = {
+    "tech": ["AAPL", "MSFT", "GOOGL", "META", "NFLX", "ORCL", "CRM", "NOW", "IBM",
+             "CSCO", "PANW", "APP", "SNOW", "PATH", "RDDT", "IGV"],
+    "semis": ["NVDA", "AMD", "INTC", "TSM", "ASML", "AVGO", "MU", "MRVL", "QCOM",
+              "AMAT", "LRCX", "TXN", "ARM", "SMCI", "DELL", "HPQ", "WDC", "STX",
+              "SNDK", "CRDO", "COHR", "LITE", "GLW", "AAOI", "KOPN", "CBRS", "EWT"],
+    "fintech": ["COIN", "HOOD", "SOFI", "MSTR", "MARA", "CRCL", "JPM", "GS", "MS", "BRK-B"],
+    "infra-ia": ["CRWV", "IREN", "APLD", "NBIS", "VRT"],
+    "health": ["JNJ", "LLY", "NVO"],
+    "consumer": ["AMZN", "COST", "MAR", "RACE", "AMC", "GME"],
+    "energia": ["XOM", "OXY", "COP", "SLB", "LNG", "MP", "XLE", "XOP"],
+    "espacio": ["GE", "LMT", "RKLB", "ASTS", "RDW", "SIDU", "SPCE", "FLY"],
+    "autos": ["TSLA", "RIVN", "F", "OUST"],
+    "energia-limpia": ["PLUG", "FLNC", "SMR"],
+    "cuantica": ["IONQ", "QBTS", "RGTI", "QUBT", "ARQQ", "BBAI", "INFQ", "LWLG"],
+    "telecom": ["NOK", "BB", "ONDS", "USAR", "BE"],
+}
+SECTOR = {t: s for s, ts in _SEC.items() for t in ts}
 
 
 @dataclass
