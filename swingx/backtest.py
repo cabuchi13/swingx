@@ -24,11 +24,15 @@ def backtest_ticker(
     costs: BingXCosts | None = None,
     leverage_for_costs: float = 10.0,
     apply_costs: bool = True,
+    armed_override: pd.Series | None = None,
 ) -> pd.DataFrame:
+    """Si armed_override viene dado, se usa esa mascara de señales en lugar del
+    setup. Sirve para comparar el setup contra controles (entradas al azar,
+    solo filtro de tendencia) con mecanica de salida y costos IDENTICOS."""
     p = p or SetupParams()
     costs = costs or BingXCosts()
     f = compute_features(df, p)
-    armed = setup_mask(f, p)
+    armed = setup_mask(f, p) if armed_override is None else armed_override.reindex(f.index).fillna(False)
 
     o = f["Open"].to_numpy(float)
     h = f["High"].to_numpy(float)

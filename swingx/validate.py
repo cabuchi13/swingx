@@ -45,6 +45,39 @@ def main() -> int:
     r = walk_forward(data, DEFAULT_GRID, costs, train_frac=train_frac, risk_per_trade=risk)
     print(format_report(r))
 
+    # 1a) EL EXPERIMENTO: cinco hipotesis contra sus propios controles.
+    print("\n" + "=" * 70)
+    print("  EXPERIMENTO DE HIPOTESIS")
+    print("=" * 70)
+    try:
+        spy = dta.fetch("SPY", period=period, use_cache=False)
+        print(f"  SPY descargado: {len(spy)} barras (referencia de régimen)\n")
+    except Exception as e:
+        spy = None
+        print(f"  [aviso] no se pudo bajar SPY ({e}); el filtro de régimen queda inactivo\n")
+    from .experiment import run_experiment, format_report as exp_report
+    exp = run_experiment(data, spy, SetupParams(), costs, repeats=4, verbose=True)
+    print()
+    print(exp_report(exp))
+
+    # 1b) EL CONTROL: el setup contra comprar al azar. Esta es la pregunta real.
+    print("\n" + "=" * 64)
+    print("  CONTROL: ¿el setup le gana a comprar al azar?")
+    print("=" * 64)
+    from .benchmark import compare
+    cmp_ = compare(data, SetupParams(), costs, repeats=5)
+    for k, lbl in [("control_azar", "entradas al azar"),
+                   ("control_tendencia", "al azar en tendencia"),
+                   ("setup", "nuestro setup")]:
+        s = cmp_[k]
+        print(f"  {lbl:24} {s.get('avg_r',0):+.3f}R   "
+              f"({s.get('trades',0):.0f} trades, PF {s.get('profit_factor',0):.2f})")
+    print(f"\n  aporte del filtro de tendencia: {cmp_['aporte_tendencia']:+.3f}R")
+    print(f"  aporte del análisis técnico:   {cmp_['aporte_setup']:+.3f}R")
+    ve = cmp_["veredicto_edge"]
+    print(f"\n  [{ve['estado'].upper()}] {ve['texto']}")
+    print("=" * 64)
+
     # 2) Backtest completo con los parametros por defecto, para el detalle
     print("\nBacktest completo con parámetros por defecto...")
     trades = run_backtest(data, SetupParams(), costs, apply_costs=True)
@@ -73,6 +106,8 @@ def main() -> int:
         "period": period,
         "tickers": len(data),
         "walk_forward": r,
+        "control": cmp_,
+        "experimento": exp,
         "backtest_completo": full,
         "por_tramo_de_score": buckets,
         "por_motivo_de_salida": por_motivo,
@@ -96,6 +131,9 @@ def main() -> int:
             f.write(f"**Veredicto: {v.get('estado', '?').upper()}**\n\n")
             f.write(f"{v.get('texto', '')}\n\n")
             f.write("```\n" + format_report(r) + "\n```\n")
+            ev = exp.get("veredicto", {})
+            f.write(f"\n## Experimento de hipótesis\n\n**{ev.get('estado','?').upper()}** — "
+                    f"{ev.get('texto','')}\n\n```\n" + exp_report(exp) + "\n```\n")
 
     if len(trades):
         trades.to_csv(out / "trades.csv", index=False)

@@ -85,7 +85,15 @@ def plan_position(
 
     # --- Restriccion 2: supervivencia al gap ----------------------------
     # En horario no operativo NO se puede cerrar. El stop no protege de un gap.
-    notional_gap = (equity * risk.max_gap_loss_pct) / risk.max_gap_pct
+    # Con margen aislado la perdida se topea en el margen, asi que la perdida
+    # real ante un gap es min(nocional x gap%, margen). Cuando el apalancamiento
+    # es alto manda el margen; cuando es bajo manda el movimiento del precio.
+    lev_for_gap = min(leverage_requested, costs.max_leverage)
+    if risk.max_gap_pct >= 1.0 / lev_for_gap:
+        # el gap supera la liquidacion: se pierde el margen entero
+        notional_gap = (equity * risk.max_gap_loss_pct) * lev_for_gap
+    else:
+        notional_gap = (equity * risk.max_gap_loss_pct) / risk.max_gap_pct
 
     # --- Restriccion 3: apalancamiento seguro ---------------------------
     lev_cap = min(max_safe_leverage(stop_dist_pct, risk), costs.max_leverage)
@@ -147,7 +155,7 @@ def plan_position(
         risk_amount=risk_amount,
         risk_pct_equity=risk_amount / equity,
         binding_constraint=binding,
-        gap_loss_20pct=notional * risk.max_gap_pct,
+        gap_loss_20pct=min(notional * risk.max_gap_pct, margin),
         round_trip_cost_pct_margin=cost_pct_margin,
         warnings=warnings,
     )
