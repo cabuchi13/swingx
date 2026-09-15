@@ -93,6 +93,12 @@ def main() -> int:
     full = stats(trades, risk)
     print(f"  {full}")
 
+    # 2b) DIAGNOSTICO DE FILTROS: cual de nuestras condiciones predice ganadores
+    print()
+    from .diagnostics import analizar, format_report as diag_report
+    diag = analizar(trades)
+    print(diag_report(diag))
+
     by_score = stats_by_bucket(trades, "score")
     buckets = []
     if len(by_score):
@@ -119,6 +125,7 @@ def main() -> int:
         "experimento": exp,
         "momentum": mom,
         "backtest_completo": full,
+        "diagnostico_filtros": diag,
         "por_tramo_de_score": buckets,
         "por_motivo_de_salida": por_motivo,
         "peores": (trades.nsmallest(5, "r")[["ticker", "entry_date", "r", "gross_pct", "reason"]]
@@ -144,6 +151,9 @@ def main() -> int:
             mv = mom.get("veredicto", {})
             f.write(f"\n## Hipótesis 2: momentum\n\n**{mv.get('estado','?').upper()}** — "
                     f"{mv.get('texto','')}\n\n```\n" + mom_report(mom) + "\n```\n")
+            dv = diag.get("veredicto", {})
+            f.write(f"\n## ¿Qué filtro predice ganadores?\n\n**{dv.get('estado','?').upper()}** — "
+                    f"{dv.get('texto','')}\n\n```\n" + diag_report(diag) + "\n```\n")
             ev = exp.get("veredicto", {})
             f.write(f"\n## Experimento de hipótesis\n\n**{ev.get('estado','?').upper()}** — "
                     f"{ev.get('texto','')}\n\n```\n" + exp_report(exp) + "\n```\n")

@@ -116,8 +116,20 @@ def backtest_ticker(
             realized_r -= cost_pct_notional / ((entry - stop0) / entry)
 
         sc = score_row(f, i, p)
+        rsig = f.iloc[i]
         trades.append({
             "ticker": ticker,
+            # --- caracteristicas de la señal, para el diagnostico de filtros ---
+            "f_rsi2": round(float(rsig["rsi_fast"]), 1) if pd.notna(rsig["rsi_fast"]) else None,
+            "f_rsi14": round(float(rsig["rsi14"]), 1) if pd.notna(rsig["rsi14"]) else None,
+            "f_atr_pct": round(float(rsig["atr_pct"]) * 100, 2) if pd.notna(rsig["atr_pct"]) else None,
+            "f_pullback": round(float(rsig["pullback"]) * 100, 2) if pd.notna(rsig["pullback"]) else None,
+            "f_vs_sma50": round(float(rsig["pct_vs_fast"]) * 100, 2) if pd.notna(rsig["pct_vs_fast"]) else None,
+            "f_vs_sma200": round(float(rsig["pct_vs_slow"]) * 100, 2) if pd.notna(rsig["pct_vs_slow"]) else None,
+            "f_trend_spread": round(float(rsig["trend_spread"]) * 100, 2) if pd.notna(rsig["trend_spread"]) else None,
+            "f_adx": round(float(rsig["adx"]), 1) if pd.notna(rsig["adx"]) else None,
+            "f_dvol_musd": round(float(rsig["dvol"]) / 1e6, 0) if pd.notna(rsig["dvol"]) else None,
+            "f_down_days": int(rsig["down_days"]) if pd.notna(rsig["down_days"]) else None,
             "signal_date": dates[i].date(),
             "entry_date": dates[j].date(),
             "exit_date": dates[exit_idx].date(),
