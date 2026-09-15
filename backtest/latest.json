@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T14:08:21.357097+00:00",
+  "generated_at": "2026-09-15T19:26:05.158511+00:00",
   "period": "8y",
   "tickers": 37,
   "walk_forward": {
@@ -32,19 +32,19 @@
     },
     "test_mejor": {
       "trades": 389,
-      "win_rate_%": 50.4,
-      "avg_r": 0.036,
+      "win_rate_%": 50.6,
+      "avg_r": 0.038,
       "median_r": 0.018,
-      "expectancy_r": 0.036,
-      "avg_win_r": 0.83,
+      "expectancy_r": 0.038,
+      "avg_win_r": 0.82,
       "avg_loss_r": -0.77,
-      "profit_factor": 1.09,
+      "profit_factor": 1.1,
       "worst_r": -1.73,
       "best_r": 3.4,
       "avg_days": 7.9,
       "gap_exits_%": 3.9,
-      "total_R": 14.1,
-      "equity_x": 1.13,
+      "total_R": 14.6,
+      "equity_x": 1.136,
       "max_dd_%": -22.4
     },
     "train_base": {
@@ -66,25 +66,25 @@
     },
     "test_base": {
       "trades": 439,
-      "win_rate_%": 48.3,
+      "win_rate_%": 48.5,
       "avg_r": 0.02,
       "median_r": -0.124,
       "expectancy_r": 0.02,
-      "avg_win_r": 1.11,
+      "avg_win_r": 1.1,
       "avg_loss_r": -1.0,
       "profit_factor": 1.04,
       "worst_r": -2.09,
       "best_r": 3.7,
       "avg_days": 9.3,
       "gap_exits_%": 8.9,
-      "total_R": 8.6,
-      "equity_x": 1.056,
-      "max_dd_%": -30.4
+      "total_R": 8.9,
+      "equity_x": 1.06,
+      "max_dd_%": -30.3
     },
-    "degradacion_pct": 175.0,
+    "degradacion_pct": 179.2,
     "veredicto": {
       "estado": "marginal",
-      "texto": "Esperanza apenas positiva (+0.036R, PF 1.09). El margen es demasiado fino para bancar costos y slippage reales."
+      "texto": "Esperanza apenas positiva (+0.038R, PF 1.10). El margen es demasiado fino para bancar costos y slippage reales."
     },
     "top5": [
       {
@@ -157,44 +157,44 @@
   "control": {
     "setup": {
       "trades": 774,
-      "win_rate_%": 47.0,
-      "avg_r": -0.029,
-      "median_r": -0.27,
-      "expectancy_r": -0.029,
-      "avg_win_r": 1.09,
+      "win_rate_%": 47.2,
+      "avg_r": -0.028,
+      "median_r": -0.274,
+      "expectancy_r": -0.028,
+      "avg_win_r": 1.08,
       "avg_loss_r": -1.02,
       "profit_factor": 0.95,
       "worst_r": -2.3,
       "best_r": 3.7,
       "avg_days": 9.3,
       "gap_exits_%": 10.2,
-      "total_R": -22.1,
-      "equity_x": 0.759,
+      "total_R": -21.7,
+      "equity_x": 0.762,
       "max_dd_%": -46.0
     },
     "control_tendencia": {
-      "trades": 1058.0,
-      "win_rate_%": 48.26,
-      "avg_r": -0.012,
+      "trades": 1057.8,
+      "win_rate_%": 48.3,
+      "avg_r": -0.011,
       "profit_factor": 0.972,
-      "max_dd_%": -46.36,
+      "max_dd_%": -46.32,
       "repeticiones": 5,
-      "avg_r_desvio": 0.0198
+      "avg_r_desvio": 0.0208
     },
     "control_azar": {
       "trades": 1051.0,
-      "win_rate_%": 48.64,
+      "win_rate_%": 48.62,
       "avg_r": -0.0,
       "profit_factor": 1.002,
-      "max_dd_%": -43.92,
+      "max_dd_%": -43.82,
       "repeticiones": 5,
-      "avg_r_desvio": 0.0495
+      "avg_r_desvio": 0.0496
     },
-    "aporte_tendencia": -0.012,
+    "aporte_tendencia": -0.011,
     "aporte_setup": -0.017,
     "veredicto_edge": {
       "estado": "sin_aporte",
-      "texto": "El setup rinde -0.029R y comprar al azar dentro de la tendencia rinde -0.012R. El RSI y el pullback no agregan nada: lo que gana el sistema es la tendencia del mercado, no la se\u00f1al."
+      "texto": "El setup rinde -0.028R y comprar al azar dentro de la tendencia rinde -0.011R. El RSI y el pullback no agregan nada: lo que gana el sistema es la tendencia del mercado, no la se\u00f1al."
     }
   },
   "experimento": {
@@ -203,100 +203,100 @@
         "hipotesis": "El setup actual, tal como esta.",
         "setup": {
           "trades": 774,
-          "win_rate_%": 47.0,
-          "avg_r": -0.029,
-          "median_r": -0.27,
-          "expectancy_r": -0.029,
-          "avg_win_r": 1.09,
+          "win_rate_%": 47.2,
+          "avg_r": -0.028,
+          "median_r": -0.274,
+          "expectancy_r": -0.028,
+          "avg_win_r": 1.08,
           "avg_loss_r": -1.02,
           "profit_factor": 0.95,
           "worst_r": -2.3,
           "best_r": 3.7,
           "avg_days": 9.3,
           "gap_exits_%": 10.2,
-          "total_R": -22.1,
-          "equity_x": 0.759,
-          "max_dd_%": -50.8
+          "total_R": -21.7,
+          "equity_x": 0.762,
+          "max_dd_%": -50.6
         },
         "control": {
-          "trades": 1079.5,
+          "trades": 1080.25,
           "win_rate_%": 48.225,
           "avg_r": 0.009,
           "profit_factor": 1.022,
-          "max_dd_%": -41.6,
-          "avg_r_desvio": 0.0163
+          "max_dd_%": -41.45,
+          "avg_r_desvio": 0.0168
         },
-        "aporte": -0.038,
+        "aporte": -0.037,
         "significativo": false
       },
       "regimen": {
         "hipotesis": "Filtrar por SPY sobre su SMA200 elimina el periodo donde comprar caidas pierde en serie, y corta la dependencia de la deriva.",
         "setup": {
           "trades": 689,
-          "win_rate_%": 48.2,
+          "win_rate_%": 48.3,
           "avg_r": 0.02,
           "median_r": -0.136,
           "expectancy_r": 0.02,
           "avg_win_r": 1.12,
-          "avg_loss_r": -1.0,
+          "avg_loss_r": -1.01,
           "profit_factor": 1.04,
           "worst_r": -2.3,
           "best_r": 3.7,
           "avg_days": 9.3,
           "gap_exits_%": 9.4,
-          "total_R": 13.5,
-          "equity_x": 1.089,
-          "max_dd_%": -35.5
+          "total_R": 13.8,
+          "equity_x": 1.093,
+          "max_dd_%": -35.2
         },
         "control": {
-          "trades": 824.75,
+          "trades": 825.25,
           "win_rate_%": 48.35,
-          "avg_r": 0.021,
+          "avg_r": 0.022,
           "profit_factor": 1.053,
-          "max_dd_%": -31.025,
-          "avg_r_desvio": 0.0152
+          "max_dd_%": -30.875,
+          "avg_r_desvio": 0.0163
         },
-        "aporte": -0.001,
+        "aporte": -0.002,
         "significativo": false
       },
       "fuerza_relativa": {
         "hipotesis": "Comprar el pullback solo de acciones en el tercio mas fuerte del universo aprovecha el momentum transversal.",
         "setup": {
           "trades": 395,
-          "win_rate_%": 48.4,
+          "win_rate_%": 48.6,
           "avg_r": -0.033,
-          "median_r": -0.092,
+          "median_r": -0.077,
           "expectancy_r": -0.033,
           "avg_win_r": 1.0,
-          "avg_loss_r": -1.0,
+          "avg_loss_r": -1.01,
           "profit_factor": 0.94,
           "worst_r": -2.3,
           "best_r": 3.33,
           "avg_days": 9.4,
           "gap_exits_%": 11.9,
-          "total_R": -13.2,
-          "equity_x": 0.854,
-          "max_dd_%": -37.3
+          "total_R": -12.9,
+          "equity_x": 0.857,
+          "max_dd_%": -37.0
         },
         "control": {
-          "trades": 394.75,
-          "win_rate_%": 48.05,
-          "avg_r": 0.009,
+          "trades": 395.25,
+          "win_rate_%": 48.0,
+          "avg_r": 0.008,
           "profit_factor": 1.03,
-          "max_dd_%": -24.475,
-          "avg_r_desvio": 0.0652
+          "max_dd_%": -24.75,
+          "avg_r_desvio": 0.066
         },
-        "aporte": -0.042,
+        "aporte": -0.041,
         "significativo": false
       },
       "regimen+fuerza": {
         "hipotesis": "Las dos capas juntas: operar solo en mercado alcista y solo las acciones mas fuertes.",
         "setup": {
           "trades": 334,
-          "win_rate_%": 49.4,
-          "avg_r": 0.021,
-          "median_r": -0.053,
-          "expectancy_r": 0.021,
+          "win_rate_%": 49.7,
+          "avg_r": 0.022,
+          "median_r": -0.027,
+          "expectancy_r": 0.022,
           "avg_win_r": 1.05,
           "avg_loss_r": -0.99,
           "profit_factor": 1.04,
@@ -304,49 +304,49 @@
           "best_r": 3.33,
           "avg_days": 9.4,
           "gap_exits_%": 11.7,
-          "total_R": 6.9,
-          "equity_x": 1.047,
-          "max_dd_%": -26.7
+          "total_R": 7.2,
+          "equity_x": 1.051,
+          "max_dd_%": -26.4
         },
         "control": {
-          "trades": 306.0,
-          "win_rate_%": 48.425,
-          "avg_r": 0.031,
-          "profit_factor": 1.087,
-          "max_dd_%": -20.275,
-          "avg_r_desvio": 0.0673
+          "trades": 306.5,
+          "win_rate_%": 48.35,
+          "avg_r": 0.029,
+          "profit_factor": 1.085,
+          "max_dd_%": -20.4,
+          "avg_r_desvio": 0.0681
         },
-        "aporte": -0.01,
+        "aporte": -0.007,
         "significativo": false
       },
       "regimen+fuerza+relativa": {
         "hipotesis": "Ademas, descartar las que cayeron mucho mas que el mercado (debilidad propia, no arrastre).",
         "setup": {
           "trades": 253,
-          "win_rate_%": 50.6,
-          "avg_r": 0.062,
-          "median_r": 0.024,
-          "expectancy_r": 0.062,
-          "avg_win_r": 1.06,
-          "avg_loss_r": -0.96,
+          "win_rate_%": 51.0,
+          "avg_r": 0.063,
+          "median_r": 0.039,
+          "expectancy_r": 0.063,
+          "avg_win_r": 1.05,
+          "avg_loss_r": -0.97,
           "profit_factor": 1.13,
           "worst_r": -2.3,
           "best_r": 3.02,
           "avg_days": 9.6,
           "gap_exits_%": 11.9,
-          "total_R": 15.6,
-          "equity_x": 1.149,
-          "max_dd_%": -21.8
+          "total_R": 15.9,
+          "equity_x": 1.153,
+          "max_dd_%": -21.5
         },
         "control": {
-          "trades": 288.5,
-          "win_rate_%": 48.925,
+          "trades": 288.75,
+          "win_rate_%": 48.9,
           "avg_r": 0.029,
-          "profit_factor": 1.087,
-          "max_dd_%": -19.4,
-          "avg_r_desvio": 0.0667
+          "profit_factor": 1.085,
+          "max_dd_%": -19.525,
+          "avg_r_desvio": 0.067
         },
-        "aporte": 0.033,
+        "aporte": 0.034,
         "significativo": false
       }
     },
@@ -356,29 +356,399 @@
       "texto": "Ninguna variante le gana a comprar al azar bajo las mismas condiciones. El an\u00e1lisis t\u00e9cnico no aporta edge medible: lo que rinde el sistema es la deriva del mercado. No operar esto con dinero real como est\u00e1."
     }
   },
+  "momentum": {
+    "variantes": {
+      "mom_base": {
+        "hipotesis": "Ruptura de 20 dias en el tercio mas fuerte del universo, sin filtro de regimen.",
+        "desarrollo": {
+          "setup": {
+            "trades": 217,
+            "win_rate_%": 50.2,
+            "avg_r": 0.081,
+            "median_r": 0.029,
+            "expectancy_r": 0.081,
+            "avg_win_r": 0.93,
+            "avg_loss_r": -0.78,
+            "profit_factor": 1.21,
+            "worst_r": -2.49,
+            "best_r": 4.4,
+            "avg_days": 34.7,
+            "gap_exits_%": 6.0,
+            "total_R": 17.6,
+            "equity_x": 1.179,
+            "max_dd_%": -14.2
+          },
+          "control": {
+            "trades": 438.75,
+            "win_rate_%": 47.5,
+            "avg_r": 0.062,
+            "profit_factor": 1.125,
+            "max_dd_%": -19.25,
+            "sigma": 0.0263
+          },
+          "aporte": 0.019,
+          "sigmas": 0.72,
+          "pasa": false
+        },
+        "validacion": {
+          "setup": {
+            "trades": 228,
+            "win_rate_%": 48.7,
+            "avg_r": 0.111,
+            "median_r": -0.033,
+            "expectancy_r": 0.111,
+            "avg_win_r": 0.99,
+            "avg_loss_r": -0.72,
+            "profit_factor": 1.3,
+            "worst_r": -1.49,
+            "best_r": 4.01,
+            "avg_days": 34.5,
+            "gap_exits_%": 7.5,
+            "total_R": 25.3,
+            "equity_x": 1.272,
+            "max_dd_%": -18.9
+          },
+          "control": {
+            "trades": 443.75,
+            "win_rate_%": 45.8,
+            "avg_r": 0.07,
+            "profit_factor": 1.15,
+            "max_dd_%": -20.075,
+            "sigma": 0.0605
+          },
+          "aporte": 0.041,
+          "sigmas": 0.68,
+          "pasa": false
+        },
+        "pasa_ambas": false
+      },
+      "mom_regimen": {
+        "hipotesis": "Lo mismo, pero solo con el mercado sobre su SMA200. Momentum falla en mercados bajistas.",
+        "desarrollo": {
+          "setup": {
+            "trades": 194,
+            "win_rate_%": 50.5,
+            "avg_r": 0.09,
+            "median_r": 0.029,
+            "expectancy_r": 0.09,
+            "avg_win_r": 0.96,
+            "avg_loss_r": -0.8,
+            "profit_factor": 1.23,
+            "worst_r": -2.49,
+            "best_r": 2.98,
+            "avg_days": 34.5,
+            "gap_exits_%": 6.7,
+            "total_R": 17.4,
+            "equity_x": 1.177,
+            "max_dd_%": -12.2
+          },
+          "control": {
+            "trades": 338.75,
+            "win_rate_%": 48.675,
+            "avg_r": 0.076,
+            "profit_factor": 1.16,
+            "max_dd_%": -17.325,
+            "sigma": 0.034
+          },
+          "aporte": 0.014,
+          "sigmas": 0.41,
+          "pasa": false
+        },
+        "validacion": {
+          "setup": {
+            "trades": 207,
+            "win_rate_%": 48.8,
+            "avg_r": 0.143,
+            "median_r": -0.035,
+            "expectancy_r": 0.143,
+            "avg_win_r": 1.05,
+            "avg_loss_r": -0.72,
+            "profit_factor": 1.39,
+            "worst_r": -1.42,
+            "best_r": 3.26,
+            "avg_days": 34.3,
+            "gap_exits_%": 7.7,
+            "total_R": 29.7,
+            "equity_x": 1.329,
+            "max_dd_%": -16.9
+          },
+          "control": {
+            "trades": 341.0,
+            "win_rate_%": 47.55,
+            "avg_r": 0.127,
+            "profit_factor": 1.283,
+            "max_dd_%": -12.775,
+            "sigma": 0.0637
+          },
+          "aporte": 0.016,
+          "sigmas": 0.25,
+          "pasa": false
+        },
+        "pasa_ambas": false
+      },
+      "mom_regimen_elite": {
+        "hipotesis": "Solo el decil superior de fuerza relativa, con r\u00e9gimen. Si momentum es real, concentrar en lo mas fuerte lo amplifica.",
+        "desarrollo": {
+          "setup": {
+            "trades": 86,
+            "win_rate_%": 57.0,
+            "avg_r": 0.238,
+            "median_r": 0.179,
+            "expectancy_r": 0.238,
+            "avg_win_r": 0.94,
+            "avg_loss_r": -0.7,
+            "profit_factor": 1.79,
+            "worst_r": -1.4,
+            "best_r": 2.78,
+            "avg_days": 36.9,
+            "gap_exits_%": 9.3,
+            "total_R": 20.4,
+            "equity_x": 1.221,
+            "max_dd_%": -4.3
+          },
+          "control": {
+            "trades": 181.0,
+            "win_rate_%": 48.275,
+            "avg_r": 0.103,
+            "profit_factor": 1.228,
+            "max_dd_%": -13.25,
+            "sigma": 0.0655
+          },
+          "aporte": 0.135,
+          "sigmas": 2.06,
+          "pasa": false
+        },
+        "validacion": {
+          "setup": {
+            "trades": 84,
+            "win_rate_%": 51.2,
+            "avg_r": 0.331,
+            "median_r": 0.106,
+            "expectancy_r": 0.331,
+            "avg_win_r": 1.31,
+            "avg_loss_r": -0.69,
+            "profit_factor": 1.98,
+            "worst_r": -1.75,
+            "best_r": 2.97,
+            "avg_days": 34.8,
+            "gap_exits_%": 9.5,
+            "total_R": 27.8,
+            "equity_x": 1.312,
+            "max_dd_%": -5.8
+          },
+          "control": {
+            "trades": 160.75,
+            "win_rate_%": 48.225,
+            "avg_r": 0.195,
+            "profit_factor": 1.42,
+            "max_dd_%": -8.35,
+            "sigma": 0.0564
+          },
+          "aporte": 0.136,
+          "sigmas": 2.41,
+          "pasa": false
+        },
+        "pasa_ambas": false
+      }
+    },
+    "veredicto": {
+      "estado": "sin_edge",
+      "texto": "Momentum tampoco le gana a comprar al azar bajo las mismas condiciones. Dos familias de hip\u00f3tesis descartadas con el mismo control."
+    }
+  },
   "backtest_completo": {
     "trades": 774,
-    "win_rate_%": 47.0,
-    "avg_r": -0.029,
-    "median_r": -0.27,
-    "expectancy_r": -0.029,
-    "avg_win_r": 1.09,
+    "win_rate_%": 47.2,
+    "avg_r": -0.028,
+    "median_r": -0.274,
+    "expectancy_r": -0.028,
+    "avg_win_r": 1.08,
     "avg_loss_r": -1.02,
     "profit_factor": 0.95,
     "worst_r": -2.3,
     "best_r": 3.7,
     "avg_days": 9.3,
     "gap_exits_%": 10.2,
-    "total_R": -22.1,
-    "equity_x": 0.759,
+    "total_R": -21.7,
+    "equity_x": 0.762,
     "max_dd_%": -46.0
+  },
+  "diagnostico_filtros": {
+    "filtros": [
+      {
+        "filtro": "f_rsi14",
+        "p_valor": 0.1395,
+        "tendencia": 0.7,
+        "mitad_1": 0.9,
+        "mitad_2": 0.6,
+        "spread_R": 0.308,
+        "consistente": false,
+        "quintiles": [
+          -0.105,
+          -0.061,
+          -0.165,
+          0.048,
+          0.143
+        ]
+      },
+      {
+        "filtro": "f_dvol_musd",
+        "p_valor": 0.0033,
+        "tendencia": 0.6,
+        "mitad_1": 0.2,
+        "mitad_2": 0.3,
+        "spread_R": 0.496,
+        "consistente": false,
+        "quintiles": [
+          -0.074,
+          -0.263,
+          0.012,
+          0.233,
+          -0.048
+        ]
+      },
+      {
+        "filtro": "f_rsi2",
+        "p_valor": 0.3688,
+        "tendencia": 0.5,
+        "mitad_1": 0.7,
+        "mitad_2": -0.9,
+        "spread_R": 0.231,
+        "consistente": false,
+        "quintiles": [
+          -0.153,
+          -0.04,
+          0.078,
+          -0.041,
+          0.019
+        ]
+      },
+      {
+        "filtro": "f_vs_sma50",
+        "p_valor": 0.3289,
+        "tendencia": 0.5,
+        "mitad_1": 0.6,
+        "mitad_2": 0.5,
+        "spread_R": 0.253,
+        "consistente": false,
+        "quintiles": [
+          -0.07,
+          -0.133,
+          -0.137,
+          0.116,
+          0.083
+        ]
+      },
+      {
+        "filtro": "f_vs_sma200",
+        "p_valor": 0.9635,
+        "tendencia": 0.3,
+        "mitad_1": 0.7,
+        "mitad_2": -0.6,
+        "spread_R": 0.092,
+        "consistente": false,
+        "quintiles": [
+          -0.009,
+          -0.037,
+          -0.084,
+          -0.02,
+          0.008
+        ]
+      },
+      {
+        "filtro": "f_trend_spread",
+        "p_valor": 0.6944,
+        "tendencia": -0.3,
+        "mitad_1": 0.5,
+        "mitad_2": -0.8,
+        "spread_R": 0.172,
+        "consistente": false,
+        "quintiles": [
+          -0.005,
+          0.018,
+          -0.076,
+          0.047,
+          -0.125
+        ]
+      },
+      {
+        "filtro": "f_atr_pct",
+        "p_valor": 0.4053,
+        "tendencia": -0.2,
+        "mitad_1": 0.6,
+        "mitad_2": -0.3,
+        "spread_R": 0.241,
+        "consistente": false,
+        "quintiles": [
+          -0.046,
+          -0.105,
+          0.088,
+          0.082,
+          -0.153
+        ]
+      },
+      {
+        "filtro": "f_adx",
+        "p_valor": 0.7309,
+        "tendencia": 0.1,
+        "mitad_1": 0.1,
+        "mitad_2": -0.1,
+        "spread_R": 0.166,
+        "consistente": false,
+        "quintiles": [
+          -0.02,
+          -0.035,
+          -0.02,
+          -0.115,
+          0.051
+        ]
+      },
+      {
+        "filtro": "score",
+        "p_valor": 0.6412,
+        "tendencia": -0.1,
+        "mitad_1": -0.4,
+        "mitad_2": 0.1,
+        "spread_R": 0.189,
+        "consistente": false,
+        "quintiles": [
+          -0.045,
+          0.016,
+          -0.105,
+          0.084,
+          -0.089
+        ]
+      },
+      {
+        "filtro": "f_pullback",
+        "p_valor": 0.5382,
+        "tendencia": 0.0,
+        "mitad_1": -0.1,
+        "mitad_2": -0.7,
+        "spread_R": 0.202,
+        "consistente": false,
+        "quintiles": [
+          -0.035,
+          -0.003,
+          0.009,
+          0.045,
+          -0.157
+        ]
+      }
+    ],
+    "utiles": [],
+    "veredicto": {
+      "estado": "ningun_filtro_sirve",
+      "texto": "Ninguna caracter\u00edstica predice el resultado de forma consistente en las dos mitades del hist\u00f3rico. Las relaciones que aparecen en una mitad se dan vuelta en la otra: eso es ruido, no se\u00f1al. No existe un filtro que separe ganadores de perdedores dentro de este setup."
+    },
+    "n_operaciones": 774
   },
   "por_tramo_de_score": [
     {
       "tramo": "(0, 40]",
       "trades": 54,
       "win_rate": 46.3,
-      "avg_r": -0.063,
+      "avg_r": -0.065,
       "profit_factor": 0.87
     },
     {
@@ -391,8 +761,8 @@
     {
       "tramo": "(55, 70]",
       "trades": 334,
-      "win_rate": 46.4,
-      "avg_r": -0.027,
+      "win_rate": 46.7,
+      "avg_r": -0.026,
       "profit_factor": 0.95
     },
     {
@@ -414,7 +784,7 @@
     },
     "tiempo": {
       "n": 370,
-      "avg_r": 0.804
+      "avg_r": 0.805
     }
   },
   "peores": [
