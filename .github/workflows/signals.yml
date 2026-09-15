@@ -1,0 +1,63 @@
+name: Señales swing
+
+on:
+  schedule:
+    # 21:30 UTC de lunes a viernes = despues del cierre de Nueva York
+    # todo el año (20:00 UTC en horario de verano, 21:00 UTC en invierno).
+    # En Cordoba son las 18:30.
+    - cron: '30 21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Correr sin enviar a Telegram'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: senales
+  cancel-in-progress: false
+
+jobs:
+  signals:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Verificar la lógica antes de operar
+        run: python tests/test_logic.py
+
+      - name: Buscar candidatos y notificar
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SWINGX_EQUITY: ${{ vars.SWINGX_EQUITY }}
+          SWINGX_LEVERAGE: ${{ vars.SWINGX_LEVERAGE }}
+          SWINGX_RISK: ${{ vars.SWINGX_RISK }}
+          SWINGX_MIN_SCORE: ${{ vars.SWINGX_MIN_SCORE }}
+          SWINGX_DRY_RUN: ${{ inputs.dry_run && '1' || '' }}
+        run: python -m swingx.alert
+
+      - name: Guardar el historial de señales
+        if: always()
+        run: |
+          git config user.name  "swingx-bot"
+          git config user.email "swingx-bot@users.noreply.github.com"
+          git add signals/
+          if git diff --staged --quiet; then
+            echo "Sin cambios en signals/"
+          else
+            git commit -m "señales $(date -u +%Y-%m-%d)"
+            git push
+          fi
