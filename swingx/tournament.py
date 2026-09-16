@@ -37,7 +37,7 @@ import pandas as pd
 from .config import SetupParams, BingXCosts
 from .backtest import backtest_ticker, stats
 from .context import build_context
-from .strategies import FAMILIAS, mascara
+from .strategies import FAMILIAS, mascara, params_de
 
 SIGMA_MIN = 3.0
 MIN_TRADES = 40
@@ -71,23 +71,29 @@ def partir_tiempo(data: dict, reserva_frac: float = RESERVA_FRAC):
 
 def _correr(data: dict, ctx: dict, nombre: str, p: SetupParams, costs: BingXCosts,
             seed: int | None = None, densidades: dict | None = None) -> pd.DataFrame:
+    # Cada familia lleva sus propios parametros de salida: las de tendencia
+    # necesitan meses de recorrido, las rapidas dias. Medirlas a todas con el
+    # mismo stop por tiempo fue el error de la version anterior.
+    pp = params_de(nombre, p)
     frames = []
     rng = np.random.default_rng(seed) if seed is not None else None
     for t, df in data.items():
         try:
             if rng is None:
-                m = mascara(nombre, df, ctx.get(t), p)
+                m = mascara(nombre, df, ctx.get(t), pp)
             else:
                 tasa = (densidades or {}).get(t, 0.0)
                 if tasa <= 0:
                     continue
                 from .signals import compute_features
-                f = compute_features(df, p)
+                f = compute_features(df, pp)
                 m = pd.Series(rng.random(len(f)) < tasa, index=f.index)
                 m = m & ~f["sma_slow"].isna()
             if not m.any():
                 continue
-            tr = backtest_ticker(df, t, p, costs, apply_costs=True, armed_override=m)
+            # El control de azar usa EXACTAMENTE los mismos parametros de salida
+            # que la estrategia: la unica diferencia permitida es la entrada.
+            tr = backtest_ticker(df, t, pp, costs, apply_costs=True, armed_override=m)
             if len(tr):
                 frames.append(tr)
         except Exception:
@@ -96,10 +102,11 @@ def _correr(data: dict, ctx: dict, nombre: str, p: SetupParams, costs: BingXCost
 
 
 def _densidades(data: dict, ctx: dict, nombre: str, p: SetupParams) -> dict:
+    pp = params_de(nombre, p)
     d = {}
     for t, df in data.items():
         try:
-            m = mascara(nombre, df, ctx.get(t), p)
+            m = mascara(nombre, df, ctx.get(t), pp)
             d[t] = float(m.sum()) / max(1, len(m))
         except Exception:
             d[t] = 0.0
