@@ -1,0 +1,298 @@
+{
+  "generated_at": "2026-09-16T12:55:25.742728+00:00",
+  "activos": "cripto",
+  "period": "5y",
+  "instrumentos": 47,
+  "referencia": "BTC-USD",
+  "torneo": {
+    "corte_reserva": "2025-06-16",
+    "familias_probadas": 7,
+    "etapa1": {
+      "tsmom_1m": {
+        "estrategia": {
+          "trades": 263,
+          "win_rate_%": 28.1,
+          "avg_r": -0.01,
+          "median_r": -1.016,
+          "expectancy_r": -0.01,
+          "avg_win_r": 2.34,
+          "avg_loss_r": -0.93,
+          "profit_factor": 0.98,
+          "worst_r": -1.15,
+          "best_r": 21.03,
+          "avg_days": 61.2,
+          "gap_exits_%": 0.8,
+          "total_R": -2.7,
+          "equity_x": 0.927,
+          "max_dd_%": -21.5
+        },
+        "control": {
+          "trades": 329.25,
+          "win_rate_%": 32.6,
+          "avg_r": 0.225,
+          "profit_factor": 1.36,
+          "max_dd_%": -12.825,
+          "sigma": 0.0386
+        },
+        "aporte": -0.235,
+        "sigmas": -6.09,
+        "pasa": false
+      },
+      "tsmom_3m": {
+        "estrategia": {
+          "trades": 196,
+          "win_rate_%": 28.1,
+          "avg_r": 0.04,
+          "median_r": -1.009,
+          "expectancy_r": 0.04,
+          "avg_win_r": 2.39,
+          "avg_loss_r": -0.88,
+          "profit_factor": 1.06,
+          "worst_r": -1.18,
+          "best_r": 17.89,
+          "avg_days": 65.6,
+          "gap_exits_%": 0.5,
+          "total_R": 7.9,
+          "equity_x": 1.043,
+          "max_dd_%": -17.9
+        },
+        "control": {
+          "trades": 322.0,
+          "win_rate_%": 32.225,
+          "avg_r": 0.218,
+          "profit_factor": 1.348,
+          "max_dd_%": -12.8,
+          "sigma": 0.0402
+        },
+        "aporte": -0.178,
+        "sigmas": -4.43,
+        "pasa": false
+      },
+      "tsmom_12m": {
+        "estrategia": {
+          "trades": 125,
+          "win_rate_%": 32.0,
+          "avg_r": 0.192,
+          "median_r": -0.968,
+          "expectancy_r": 0.192,
+          "avg_win_r": 2.5,
+          "avg_loss_r": -0.89,
+          "profit_factor": 1.32,
+          "worst_r": -1.17,
+          "best_r": 17.89,
+          "avg_days": 73.6,
+          "gap_exits_%": 0.0,
+          "total_R": 24.0,
+          "equity_x": 1.233,
+          "max_dd_%": -18.0
+        },
+        "control": {
+          "trades": 307.5,
+          "win_rate_%": 32.95,
+          "avg_r": 0.259,
+          "profit_factor": 1.415,
+          "max_dd_%": -12.675,
+          "sigma": 0.0424
+        },
+        "aporte": -0.067,
+        "sigmas": -1.58,
+        "pasa": false
+      },
+      "tsmom_combo": {
+        "estrategia": {
+          "trades": 202,
+          "win_rate_%": 27.2,
+          "avg_r": 0.022,
+          "median_r": -1.01,
+          "expectancy_r": 0.022,
+          "avg_win_r": 2.42,
+          "avg_loss_r": -0.87,
+          "profit_factor": 1.04,
+          "worst_r": -1.17,
+          "best_r": 17.89,
+          "avg_days": 64.3,
+          "gap_exits_%": 0.5,
+          "total_R": 4.5,
+          "equity_x": 1.009,
+          "max_dd_%": -17.5
+        },
+        "control": {
+          "trades": 314.75,
+          "win_rate_%": 32.275,
+          "avg_r": 0.233,
+          "profit_factor": 1.373,
+          "max_dd_%": -12.3,
+          "sigma": 0.048
+        },
+        "aporte": -0.211,
+        "sigmas": -4.4,
+        "pasa": false
+      },
+      "tsmom_confirmado": {
+        "estrategia": {
+          "trades": 190,
+          "win_rate_%": 28.4,
+          "avg_r": 0.013,
+          "median_r": -1.008,
+          "expectancy_r": 0.013,
+          "avg_win_r": 2.29,
+          "avg_loss_r": -0.89,
+          "profit_factor": 1.02,
+          "worst_r": -1.19,
+          "best_r": 9.65,
+          "avg_days": 61.5,
+          "gap_exits_%": 0.5,
+          "total_R": 2.5,
+          "equity_x": 0.999,
+          "max_dd_%": -18.3
+        },
+        "control": {
+          "trades": 298.5,
+          "win_rate_%": 32.75,
+          "avg_r": 0.263,
+          "profit_factor": 1.415,
+          "max_dd_%": -13.0,
+          "sigma": 0.0334
+        },
+        "aporte": -0.25,
+        "sigmas": -7.49,
+        "pasa": false
+      },
+      "base_mean_reversion": {
+        "estrategia": {
+          "trades": 94,
+          "win_rate_%": 31.9,
+          "avg_r": -0.254,
+          "median_r": -1.014,
+          "expectancy_r": -0.254,
+          "avg_win_r": 1.11,
+          "avg_loss_r": -0.89,
+          "profit_factor": 0.58,
+          "worst_r": -1.08,
+          "best_r": 3.66,
+          "avg_days": 9.4,
+          "gap_exits_%": 0.0,
+          "total_R": -23.9,
+          "equity_x": 0.783,
+          "max_dd_%": -24.8
+        },
+        "control": {
+          "trades": 154.75,
+          "win_rate_%": 43.75,
+          "avg_r": 0.036,
+          "profit_factor": 1.117,
+          "max_dd_%": -14.55,
+          "sigma": 0.1115
+        },
+        "aporte": -0.29,
+        "sigmas": -2.6,
+        "pasa": false
+      },
+      "base_mom_transversal": {
+        "estrategia": {
+          "trades": 153,
+          "win_rate_%": 51.0,
+          "avg_r": 0.138,
+          "median_r": 0.034,
+          "expectancy_r": 0.138,
+          "avg_win_r": 0.79,
+          "avg_loss_r": -0.54,
+          "profit_factor": 1.52,
+          "worst_r": -1.04,
+          "best_r": 3.55,
+          "avg_days": 11.9,
+          "gap_exits_%": 0.0,
+          "total_R": 21.2,
+          "equity_x": 1.228,
+          "max_dd_%": -6.0
+        },
+        "control": {
+          "trades": 221.25,
+          "win_rate_%": 45.55,
+          "avg_r": 0.079,
+          "profit_factor": 1.21,
+          "max_dd_%": -10.95,
+          "sigma": 0.0429
+        },
+        "aporte": 0.059,
+        "sigmas": 1.38,
+        "pasa": false
+      }
+    },
+    "finalistas": [
+      "base_mom_transversal"
+    ],
+    "etapa2": {
+      "base_mom_transversal": {
+        "estrategia": {
+          "trades": 171,
+          "win_rate_%": 48.5,
+          "avg_r": 0.135,
+          "median_r": -0.033,
+          "expectancy_r": 0.135,
+          "avg_win_r": 0.82,
+          "avg_loss_r": -0.52,
+          "profit_factor": 1.51,
+          "worst_r": -1.08,
+          "best_r": 2.75,
+          "avg_days": 11.7,
+          "gap_exits_%": 0.0,
+          "total_R": 23.0,
+          "equity_x": 1.251,
+          "max_dd_%": -4.8
+        },
+        "control": {
+          "trades": 241.75,
+          "win_rate_%": 44.35,
+          "avg_r": 0.042,
+          "profit_factor": 1.11,
+          "max_dd_%": -11.375,
+          "sigma": 0.0299
+        },
+        "aporte": 0.093,
+        "sigmas": 3.11,
+        "pasa": true
+      }
+    },
+    "sobrevivientes": [
+      "base_mom_transversal"
+    ],
+    "etapa3": {
+      "base_mom_transversal": {
+        "estrategia": {
+          "trades": 135,
+          "win_rate_%": 44.4,
+          "avg_r": 0.042,
+          "median_r": -0.098,
+          "expectancy_r": 0.042,
+          "avg_win_r": 0.8,
+          "avg_loss_r": -0.56,
+          "profit_factor": 1.13,
+          "worst_r": -1.05,
+          "best_r": 3.11,
+          "avg_days": 11.9,
+          "gap_exits_%": 0.0,
+          "total_R": 5.7,
+          "equity_x": 1.053,
+          "max_dd_%": -7.9
+        },
+        "control": {
+          "trades": 154.75,
+          "win_rate_%": 46.65,
+          "avg_r": 0.084,
+          "profit_factor": 1.252,
+          "max_dd_%": -10.65,
+          "sigma": 0.0943
+        },
+        "aporte": -0.042,
+        "sigmas": -0.45,
+        "pasa": false
+      }
+    },
+    "ganadoras": [],
+    "veredicto": {
+      "estado": "cayo_en_reserva",
+      "texto": "base_mom_transversal replic\u00f3 en otras acciones pero se cay\u00f3 en el periodo de reserva. Eso significa que el efecto existia en los a\u00f1os de desarrollo y dejo de existir despues: o era ruido, o era un edge real que ya se arbitro. En ninguno de los dos casos se opera."
+    }
+  }
+}
