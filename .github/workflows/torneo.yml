@@ -1,0 +1,42 @@
+name: Torneo de estrategias
+on:
+  workflow_dispatch:
+    inputs:
+      activos:
+        description: 'Mercado sobre el que correr el torneo'
+        type: choice
+        options: ['cripto', 'acciones']
+        default: 'cripto'
+      period:
+        description: 'Histórico a descargar'
+        type: choice
+        options: ['3y', '5y', '8y', 'max']
+        default: '5y'
+permissions:
+  contents: write
+jobs:
+  torneo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Verificar la lógica
+        run: python tests/test_logic.py
+      - name: Correr el torneo
+        env:
+          SWINGX_ACTIVOS: ${{ inputs.activos }}
+          SWINGX_PERIOD: ${{ inputs.period }}
+        run: python -m swingx.run_tournament
+      - name: Publicar el resultado
+        if: always()
+        run: |
+          git config user.name  "swingx-bot"
+          git config user.email "swingx-bot@users.noreply.github.com"
+          git add backtest/
+          git diff --staged --quiet || (git commit -m "torneo ${{ inputs.activos }}" && git push)
