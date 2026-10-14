@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-13T02:42:00.519153+00:00",
-  "date": "2026-10-13",
+  "generated_at": "2026-10-14T00:31:47.231805+00:00",
+  "date": "2026-10-14",
   "equity": 2000.0,
   "candidates": [
     {
@@ -25,7 +25,7 @@
       "s_vol": 52.0,
       "ticker": "AMAT",
       "sector": "semis",
-      "earnings_in_days": 22,
+      "earnings_in_days": 21,
       "earnings_date": "2026-11-12",
       "rejected": null,
       "plan": {
@@ -60,7 +60,7 @@
       "pullback_pct": 0.054004338205528434,
       "pct_vs_sma50": 0.01676277806425737,
       "pct_vs_sma200": 0.11851564070730129,
-      "dvol_musd": 24079.597429069672,
+      "dvol_musd": 24086.401740089874,
       "stop_dist_pct": 0.03666473608970806,
       "score": 73.0,
       "s_trend": 59.0,
@@ -70,7 +70,7 @@
       "s_vol": 99.0,
       "ticker": "NVDA",
       "sector": "semis",
-      "earnings_in_days": 25,
+      "earnings_in_days": 24,
       "earnings_date": "2026-11-17",
       "rejected": null,
       "plan": {
@@ -105,7 +105,7 @@
       "pullback_pct": 0.08532314271509962,
       "pct_vs_sma50": 0.025563986161832693,
       "pct_vs_sma200": 0.13208043862299435,
-      "dvol_musd": 4399.9910415620425,
+      "dvol_musd": 4400.786428072967,
       "stop_dist_pct": 0.03731352957239408,
       "score": 72.7,
       "s_trend": 63.0,
@@ -115,9 +115,9 @@
       "s_vol": 98.0,
       "ticker": "TSM",
       "sector": "semis",
-      "earnings_in_days": 2,
+      "earnings_in_days": 1,
       "earnings_date": "2026-10-15",
-      "rejected": "reporta en 2 dias habiles"
+      "rejected": "reporta en 1 dias habiles"
     },
     {
       "date": "2026-10-12",
@@ -131,7 +131,7 @@
       "pullback_pct": 0.09873430154711679,
       "pct_vs_sma50": 0.009733044227192317,
       "pct_vs_sma200": 0.40240721763897486,
-      "dvol_musd": 26727.24799417694,
+      "dvol_musd": 26740.698937878115,
       "stop_dist_pct": 0.06925060475428779,
       "score": 69.0,
       "s_trend": 100.0,
@@ -141,7 +141,7 @@
       "s_vol": 13.0,
       "ticker": "MU",
       "sector": "semis",
-      "earnings_in_days": 51,
+      "earnings_in_days": 50,
       "earnings_date": "2026-12-23",
       "rejected": null,
       "plan": {
@@ -178,7 +178,7 @@
       "pullback_pct": 0.08496811636209707,
       "pct_vs_sma50": 0.11850033652391484,
       "pct_vs_sma200": 0.5346482934383625,
-      "dvol_musd": 13043.202724726258,
+      "dvol_musd": 13044.753691100768,
       "stop_dist_pct": 0.05911525768563304,
       "score": 68.0,
       "s_trend": 100.0,
@@ -188,7 +188,7 @@
       "s_vol": 40.0,
       "ticker": "AMD",
       "sector": "semis",
-      "earnings_in_days": 15,
+      "earnings_in_days": 14,
       "earnings_date": "2026-11-03",
       "rejected": null,
       "plan": {
@@ -233,9 +233,9 @@
       "s_vol": 84.0,
       "ticker": "ASML",
       "sector": "semis",
-      "earnings_in_days": 1,
+      "earnings_in_days": 0,
       "earnings_date": "2026-10-14",
-      "rejected": "reporta en 1 dias habiles"
+      "rejected": "reporta en 0 dias habiles"
     },
     {
       "date": "2026-10-12",
@@ -259,9 +259,9 @@
       "s_vol": 28.0,
       "ticker": "LRCX",
       "sector": "semis",
-      "earnings_in_days": 6,
+      "earnings_in_days": 5,
       "earnings_date": "2026-10-21",
-      "rejected": "reporta en 6 dias habiles"
+      "rejected": "reporta en 5 dias habiles"
     },
     {
       "date": "2026-10-12",
@@ -285,9 +285,9 @@
       "s_vol": 86.0,
       "ticker": "TXN",
       "sector": "semis",
-      "earnings_in_days": 6,
+      "earnings_in_days": 5,
       "earnings_date": "2026-10-21",
-      "rejected": "reporta en 6 dias habiles"
+      "rejected": "reporta en 5 dias habiles"
     },
     {
       "date": "2026-10-12",
@@ -301,7 +301,7 @@
       "pullback_pct": 0.07369089472291857,
       "pct_vs_sma50": 0.11678191726492101,
       "pct_vs_sma200": 0.5396753994366158,
-      "dvol_musd": 5102.241568502655,
+      "dvol_musd": 5103.699810522308,
       "stop_dist_pct": 0.08893985920838351,
       "score": 60.1,
       "s_trend": 100.0,
@@ -311,7 +311,7 @@
       "s_vol": 0.0,
       "ticker": "MRVL",
       "sector": "semis",
-      "earnings_in_days": 35,
+      "earnings_in_days": 34,
       "earnings_date": "2026-12-01",
       "rejected": null,
       "plan": {
@@ -348,7 +348,7 @@
       "pullback_pct": 0.11036936439790639,
       "pct_vs_sma50": 0.04560052587281002,
       "pct_vs_sma200": 0.23528311303493496,
-      "dvol_musd": 1473.6310354615784,
+      "dvol_musd": 1473.8357330592346,
       "stop_dist_pct": 0.08602435206490189,
       "score": 56.2,
       "s_trend": 98.0,
@@ -358,7 +358,7 @@
       "s_vol": 0.0,
       "ticker": "SMCI",
       "sector": "semis",
-      "earnings_in_days": 15,
+      "earnings_in_days": 14,
       "earnings_date": "2026-11-03",
       "rejected": null,
       "plan": {
