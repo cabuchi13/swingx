@@ -1,6 +1,54 @@
 {
-  "generated_at": "2026-10-28T00:41:19.195395+00:00",
-  "date": "2026-10-28",
+  "generated_at": "2026-10-29T01:10:36.615073+00:00",
+  "date": "2026-10-29",
   "equity": 2000.0,
-  "candidates": []
+  "candidates": [
+    {
+      "date": "2026-10-27",
+      "close": 240.88999938964844,
+      "trigger": 248.0800018310547,
+      "stop": 231.86820443863084,
+      "atr": 8.608959496298892,
+      "atr_pct": 0.035738135738767565,
+      "rsi2": 12.866100615058855,
+      "rsi14": 52.4859069302621,
+      "pullback_pct": 0.037556411157589724,
+      "pct_vs_sma50": 0.016367187260938408,
+      "pct_vs_sma200": 0.21355071626838681,
+      "dvol_musd": 1770.805490022583,
+      "stop_dist_pct": 0.0653490699482672,
+      "score": 63.4,
+      "s_trend": 94.0,
+      "s_depth": 54.0,
+      "s_oversold": 14.0,
+      "s_support": 73.0,
+      "s_vol": 57.0,
+      "ticker": "CRM",
+      "sector": "tech",
+      "earnings_in_days": 24,
+      "earnings_date": "2026-12-02",
+      "rejected": null,
+      "plan": {
+        "entry": 248.0800018310547,
+        "stop": 231.86820443863084,
+        "target1": 272.3976979196905,
+        "stop_dist_pct": 0.0653490699482672,
+        "notional": 306.0487320758009,
+        "margin": 33.53024366037901,
+        "qty": 1.2336695010354908,
+        "leverage": 9.127542739495306,
+        "leverage_requested": 10.0,
+        "liq_price": 222.14112600317654,
+        "liq_dist_pct": 0.1045585119172275,
+        "risk_amount": 20.0,
+        "risk_pct_equity": 0.01,
+        "binding_constraint": "riesgo por operacion",
+        "gap_loss_20pct": 33.53024366037901,
+        "round_trip_cost_pct_margin": 2.555711967058686,
+        "warnings": [
+          "Apalancamiento bajado de 10x a 9.1x: con un stop de 6.5% la liquidacion quedaria demasiado cerca."
+        ]
+      }
+    }
+  ]
 }
