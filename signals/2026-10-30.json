@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-10-30T01:17:57.221237+00:00",
+  "date": "2026-10-30",
+  "equity": 2000.0,
+  "candidates": [
+    {
+      "date": "2026-10-28",
+      "close": 150.1300048828125,
+      "trigger": 155.14999389648438,
+      "stop": 138.37745660113623,
+      "atr": 6.0127261495923365,
+      "atr_pct": 0.040050129581263326,
+      "rsi2": 9.74532519527692,
+      "rsi14": 56.53855287201397,
+      "pullback_pct": 0.05554857484970391,
+      "pct_vs_sma50": 0.07599095515458074,
+      "pct_vs_sma200": 0.30233966342665786,
+      "dvol_musd": 1837.0118708234406,
+      "stop_dist_pct": 0.1081053042550471,
+      "score": 61.9,
+      "s_trend": 100.0,
+      "s_depth": 79.0,
+      "s_oversold": 35.0,
+      "s_support": 0.0,
+      "s_vol": 40.0,
+      "ticker": "NOW",
+      "sector": "tech",
+      "earnings_in_days": 63,
+      "earnings_date": "2027-01-27",
+      "rejected": null,
+      "plan": {
+        "entry": 155.14999389648438,
+        "stop": 138.37745660113623,
+        "target1": 180.3087998395066,
+        "stop_dist_pct": 0.1081053042550471,
+        "notional": 185.00479821799553,
+        "margin": 32.92502399108999,
+        "qty": 1.1924254302029182,
+        "leverage": 5.618972313218683,
+        "leverage_requested": 10.0,
+        "liq_price": 128.31393422392733,
+        "liq_dist_pct": 0.17296848680807544,
+        "risk_amount": 20.0,
+        "risk_pct_equity": 0.01,
+        "binding_constraint": "riesgo por operacion",
+        "gap_loss_20pct": 32.92502399108999,
+        "round_trip_cost_pct_margin": 1.5733122477012313,
+        "warnings": [
+          "Apalancamiento bajado de 10x a 5.6x: con un stop de 10.8% la liquidacion quedaria demasiado cerca."
+        ]
+      }
+    }
+  ]
+}
