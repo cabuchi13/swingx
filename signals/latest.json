@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-03T03:01:52.878246+00:00",
-  "date": "2026-11-03",
+  "generated_at": "2026-11-04T01:36:12.015512+00:00",
+  "date": "2026-11-04",
   "equity": 2000.0,
   "candidates": [
     {
@@ -15,7 +15,7 @@
       "pullback_pct": 0.06685070618050436,
       "pct_vs_sma50": -0.01220948623470378,
       "pct_vs_sma200": 0.15733563107197768,
-      "dvol_musd": 11862.178906134948,
+      "dvol_musd": 11865.201341305847,
       "stop_dist_pct": 0.05141049429804697,
       "score": 89.4,
       "s_trend": 85.0,
@@ -25,7 +25,7 @@
       "s_vol": 99.0,
       "ticker": "MSFT",
       "sector": "tech",
-      "earnings_in_days": 61,
+      "earnings_in_days": 60,
       "earnings_date": "2027-01-27",
       "rejected": null,
       "plan": {
@@ -60,7 +60,7 @@
       "pullback_pct": 0.030351655804475484,
       "pct_vs_sma50": 0.014087295994682133,
       "pct_vs_sma200": 0.1392910859111961,
-      "dvol_musd": 14349.174184846497,
+      "dvol_musd": 14364.659091581727,
       "stop_dist_pct": 0.031569371240896475,
       "score": 55.7,
       "s_trend": 72.0,
@@ -70,8 +70,8 @@
       "s_vol": 83.0,
       "ticker": "AAPL",
       "sector": "tech",
-      "earnings_in_days": null,
-      "earnings_date": "2026-11-02",
+      "earnings_in_days": 61,
+      "earnings_date": "2027-01-28",
       "rejected": null,
       "plan": {
         "entry": 343.79998779296875,
