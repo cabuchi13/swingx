@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-11-14T01:39:40.979182+00:00",
+  "date": "2026-11-14",
+  "equity": 2000.0,
+  "candidates": [
+    {
+      "date": "2026-11-12",
+      "close": 405.489990234375,
+      "trigger": 416.010009765625,
+      "stop": 393.1949498100714,
+      "atr": 8.575269260189813,
+      "atr_pct": 0.021147918485566734,
+      "rsi2": 6.09575417389695,
+      "rsi14": 49.746004998898975,
+      "pullback_pct": 0.06234251638718743,
+      "pct_vs_sma50": 0.0066992254396807125,
+      "pct_vs_sma200": 0.08831071808411747,
+      "dvol_musd": 195.66598788864135,
+      "stop_dist_pct": 0.054842574505376225,
+      "score": 67.4,
+      "s_trend": 47.0,
+      "s_depth": 89.0,
+      "s_oversold": 59.0,
+      "s_support": 89.0,
+      "s_vol": 85.0,
+      "ticker": "RACE",
+      "sector": "consumer",
+      "earnings_in_days": 61,
+      "earnings_date": "2027-02-09",
+      "rejected": null,
+      "plan": {
+        "entry": 416.010009765625,
+        "stop": 393.1949498100714,
+        "target1": 450.23259969895537,
+        "stop_dist_pct": 0.054842574505376225,
+        "notional": 364.68018105239383,
+        "margin": 36.46801810523938,
+        "qty": 0.8766139575772474,
+        "leverage": 10.0,
+        "leverage_requested": 10.0,
+        "liq_price": 376.48905883789064,
+        "liq_dist_pct": 0.09499999999999997,
+        "risk_amount": 20.0,
+        "risk_pct_equity": 0.01,
+        "binding_constraint": "riesgo por operacion",
+        "gap_loss_20pct": 36.46801810523938,
+        "round_trip_cost_pct_margin": 2.8000000000000003,
+        "warnings": []
+      }
+    }
+  ]
+}
